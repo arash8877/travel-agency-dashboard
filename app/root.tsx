@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 
+
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -24,8 +25,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 import {registerLicense} from "@syncfusion/ej2-base";
-
-registerLicense (import.meta.env.VITE_EJS_LICENSE_KEY as string);
+registerLicense (import.meta.env.VITE_SYNCFUSION_LICENSE_KEY as string);
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -9,11 +9,13 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
     {
-      name: "chrome-snoop-logger",
+      name: "chrome-snoop-silencer",
       configureServer(server) {
-        server.middlewares.use((req, _res, next) => {
-          if (req.url?.includes("/.well-known/appspecific")) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url?.startsWith("/.well-known/appspecific")) {
             console.log("🤖 Chrome DevTools is sniffing around:", req.url);
+            res.statusCode = 204; // No Content
+            return res.end();
           }
           next();
         });
